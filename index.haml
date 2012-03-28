@@ -1,0 +1,20 @@
+- @title = 'editable'
+!!! XHTML
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html', :charset => 'UTF-8'}
+    %title= @title
+    %script{:type => 'text/javascript', :src => "jquery.js"}
+    %script{:type => 'text/javascript', :src => "editable.js"}
+    %script{:type => 'text/javascript', :src => "main.js"}
+  %body
+    %h1= @title
+    %div#main
+      %div.name 
+        %span name : 
+        %span.editable
+          shokai
+      %div.city
+        %span city : 
+        %span.editable
+          Fujisawa
