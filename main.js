@@ -1,8 +1,11 @@
 $(
     function(){
         console.log('start');
-        editable($('.name .editable'), function(e){
-                     console.log(e);
-                 });
+        $('.name .editable').editable(function(e){
+                                          console.log(e.value);
+                                      });
+        $('.city .editable').editable(function(e){
+                                          console.log(e.value);
+                                      });
     }
 );
