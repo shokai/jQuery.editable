@@ -8,14 +8,29 @@
     <script type='text/javascript'>
       $(function(){
         $('.name .editable').editable(function(e){
+          alert(e.target.selector + ' : ' + e.value)
           console.log(e.value);
         });
         $('.city .editable').editable(function(e){
+          alert(e.target.selector + ' : ' + e.value)
+          console.log(e.value);
+        });
+        $('.zip .editable').editable(function(e){
+          alert(e.target.selector + ' : ' + e.value)
           console.log(e.value);
         });
       });
 
     </script>
+    <style type='text/css'>
+      span.editable {
+        background-color : #FFA;
+        padding : 3px;
+      }
+      input.editable {
+        font-size : larger;
+      }
+    </style>
   </head>
   <body>
     <h1>editable</h1>
@@ -29,7 +44,13 @@
       <div class='city'>
         <span>city :</span>
         <span class='editable'>
-          Fujisawa
+          Fujisawa, Kanagawa
+        </span>
+      </div>
+      <div class='zip'>
+        <span>zip-code :</span>
+        <span class='editable'>
+          252-0816
         </span>
       </div>
     </div>
