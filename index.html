@@ -7,15 +7,15 @@
     <script src='editable.js' type='text/javascript'></script>
     <script type='text/javascript'>
       $(function(){
-        $('.name .editable').editable(function(e){
+        $('.name .editable').editable('dblclick', function(e){
           alert(e.target.selector + ' : ' + e.value)
           console.log(e.value);
         });
-        $('.city .editable').editable(function(e){
+        $('.city .editable').editable('click', function(e){
           alert(e.target.selector + ' : ' + e.value)
           console.log(e.value);
         });
-        $('.zip .editable').editable(function(e){
+        $('.zip .editable').editable('click', function(e){
           alert(e.target.selector + ' : ' + e.value)
           console.log(e.value);
         });
