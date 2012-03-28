@@ -7,15 +7,15 @@
     <script src='editable.js' type='text/javascript'></script>
     <script type='text/javascript'>
       $(function(){
-        $('.name .editable').editable(function(e){
+        $('.name .editable').editable('dblclick', function(e){
           alert(e.target.selector + ' : ' + e.value)
           console.log(e.value);
         });
-        $('.city .editable').editable(function(e){
+        $('.city .editable').editable('click', function(e){
           alert(e.target.selector + ' : ' + e.value)
           console.log(e.value);
         });
-        $('.zip .editable').editable(function(e){
+        $('.zip .editable').editable('click', function(e){
           alert(e.target.selector + ' : ' + e.value)
           console.log(e.value);
         });
@@ -35,12 +35,14 @@
   <body>
     <h1>editable</h1>
     <div id='main'>
+      <h2>double click</h2>
       <div class='name'>
         <span>name :</span>
         <span class='editable'>
           shokai
         </span>
       </div>
+      <h2>single click</h2>
       <div class='city'>
         <span>city :</span>
         <span class='editable'>
@@ -54,5 +56,7 @@
         </span>
       </div>
     </div>
+    <hr />
+    source : <a href="https://github.com/shokai/jQuery.editable">https://github.com/shokai/jQuery.editable</a>
   </body>
 </html>

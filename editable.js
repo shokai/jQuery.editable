@@ -1,11 +1,11 @@
 
 (function($){
-     $.fn.editable = function(callback){
+     $.fn.editable = function(event, callback){
          if(typeof callback != 'function') callback = function(arg){};
 
          var that = this;
          var edit_start = function(){
-             that.unbind('dblclick');
+             that.unbind(event);
              var input = $('<input>').
                  attr('id','editable_'+(new Date()*1)).
                  addClass('editable').
@@ -14,7 +14,7 @@
              var finish = function(){
                  var res = input.val().replace(/^\s+/,'').replace(/\s+$/,'');
                  that.html(res);
-                 that.bind('dblclick', edit_start);
+                 that.bind(event, edit_start);
                  callback({value : res, target : that});
              }
              
@@ -25,11 +25,11 @@
                      }
                  }
              );
-             that.die();
+
              that.html(input);
              input.focus();
          };
          
-         that.bind('dblclick', edit_start);
+         that.bind(event, edit_start);
      };
  })(jQuery);
