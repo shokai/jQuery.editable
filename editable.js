@@ -27,6 +27,7 @@
              );
              that.die();
              that.html(input);
+             input.focus();
          };
          
          that.bind('dblclick', edit_start);
