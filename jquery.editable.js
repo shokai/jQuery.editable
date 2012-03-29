@@ -18,7 +18,7 @@
         var edit_start = function(){
             trigger.unbind(action);
             if(trigger != target) trigger.hide();
-            var old_value = target.html().replace(/^\s+/,'').replace(/\s+$/,'');
+            var old_value = target.text().replace(/^\s+/,'').replace(/\s+$/,'');
             var input = $('<input>').val(old_value).attr('id','editable_'+(new Date()*1)).addClass('editable');
             var finish = function(){
                 var res = input.val().replace(/^\s+/,'').replace(/\s+$/,'');
