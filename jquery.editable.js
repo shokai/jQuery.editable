@@ -22,7 +22,7 @@
             var input = $('<input>').val(old_value).attr('id','editable_'+(new Date()*1)).addClass('editable');
             var finish = function(){
                 var res = input.val().replace(/^\s+/,'').replace(/\s+$/,'');
-                target.html(res);
+                target.text(res);
                 callback({value : res, target : target, old_value : old_value});
                 trigger.bind(action, edit_start);
                 if(trigger != target) trigger.show();
