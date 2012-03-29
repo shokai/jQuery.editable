@@ -1,6 +1,6 @@
 jQuery.editable plugin
 ======================
-Editable block element plugin for jQuery
+Edit in place plugin for jQuery
 
 DEMO
 ----
