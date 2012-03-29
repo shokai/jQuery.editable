@@ -1,3 +1,6 @@
+// jquery.editable.js
+// (c) 2012 Sho Hashimoto <hashimoto@shokai.org>
+// https://github.com/shokai/jQuery.editable
 
 (function($){
      $.fn.editable = function(event, callback){
