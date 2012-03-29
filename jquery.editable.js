@@ -38,5 +38,6 @@
         };
 
         trigger.bind(action, edit_start);
+        return this;
     };
 })(jQuery);
