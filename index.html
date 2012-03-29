@@ -28,14 +28,20 @@
           }
           else{
             $('.zip .editable').html(e.old_value);
-            alert('invalid zip-code : ' + e.value);
+            alert(e.value + ' is not valid zip-code');
           }
         });
 
         // edit button
         var option = {trigger : $('.website .btn_edit'), action : 'click'};
         $('.website .editable').editable(option, function(e){
-          alert(e.value);
+          if(!e.value.match(/^https?:\/\/.+/)){
+            $('.website .editable').html(e.old_value);
+            alert(e.value + ' is not valid URL');
+          }
+          else{
+            alert('save : '+e.value);
+          }
         });
 
       });
