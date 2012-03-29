@@ -28,6 +28,7 @@
 
              that.html(input);
              input.focus();
+             input.blur(finish);
          };
          
          that.bind(event, edit_start);
