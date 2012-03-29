@@ -25,5 +25,13 @@ Make editable
 Double click
 
     $('span#edit').editable('dblclick', function(e){
-      alert(e.oldValue + ' -> ' + e.value);
+      alert(e.old_value + ' -> ' + e.value);
+    });
+
+
+Edit with Button
+
+    var option = {trigger : $('input.btn_edit'), action : 'click'};
+    $('span#edit').editable(option, function(e){
+      alert(e.value);
     });

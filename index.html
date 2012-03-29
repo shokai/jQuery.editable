@@ -1,36 +1,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <meta charset='UTF-8' content='text/html' http-equiv='Content-Type' />
+    <meta charset="UTF-8" content="text/html" http-equiv="Content-Type" />
     <title>jQuery.editable demo</title>
-    <script src='jquery.js' type='text/javascript'></script>
-    <script src='jquery.editable.js' type='text/javascript'></script>
-    <script type='text/javascript'>
+    <script src="jquery.js" type="text/javascript"></script>
+    <script src="jquery.editable.js" type="text/javascript"></script>
+    <script type="text/javascript">
       $(function(){
+
         $('h1').editable('mouseover');
 
+        // double click
         $('.name .editable').editable('dblclick', function(e){
-          alert(e.target.selector + ' : ' + e.value)
+          alert(e.target.selector + ' : ' + e.value);
           console.log(e.value);
         });
 
+        // single click
         $('.city .editable').editable('click', function(e){
           console.log(e.value);
         });
 
+        // validation
         $('.zip .editable').editable('click', function(e){
           if(e.value.match(/^\d{3}\-\d{4}$/)){
             alert(e.target.selector + ' : ' + e.value);
           }
           else{
-            $('.zip .editable').html(e.oldValue);
+            $('.zip .editable').html(e.old_value);
             alert('invalid zip-code : ' + e.value);
           }
         });
-      });
 
+        // edit button
+        var option = {trigger : $('.website .btn_edit'), action : 'click'};
+        $('.website .editable').editable(option, function(e){
+          alert(e.value);
+        });
+
+      });
     </script>
-    <style type='text/css'>
+    <style type="text/css">
       span.editable {
         background-color : #FFA;
         padding : 3px;
@@ -45,27 +55,33 @@
   </head>
   <body>
     <h1>jQuery.editable demo</h1>
-    <div id='main'>
+    <div id="main">
       <h2>double click</h2>
-      <div class='name'>
+      <div class="name">
         <span>name :</span>
-        <span class='editable'>
+        <span class="editable">
           shokai
         </span>
       </div>
       <h2>single click</h2>
-      <div class='city'>
+      <div class="city">
         <span>city :</span>
-        <span class='editable'>
+        <span class="editable">
           Fujisawa, Kanagawa
         </span>
       </div>
       <h2>validation</h2>
-      <div class='zip'>
+      <div class="zip">
         <span>zip-code :</span>
-        <span class='editable'>
+        <span class="editable">
           252-0816
         </span>
+      </div>
+      <h2>edit button</h2>
+      <div class="website">
+        <span>website :</span>
+        <span class="editable">http://shokai.org</span>
+        <input type="button" value="edit" class="btn_edit"></input>
       </div>
     </div>
     <hr />

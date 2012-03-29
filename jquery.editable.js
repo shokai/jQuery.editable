@@ -5,28 +5,38 @@
 (function($){
     $.fn.editable = function(event, callback){
         if(typeof callback != 'function') callback = function(arg){};
+        if(typeof event == "string"){
+            var trigger = this;
+            var action = event;
+        }
+        else{
+            var trigger = event.trigger;
+            var action = event.action;
+        }
 
-        var that = this;
+        var target = this;
         var edit_start = function(){
-            that.unbind(event);
-            var old_value = that.html().replace(/^\s+/,'').replace(/\s+$/,'');
+            trigger.unbind(action);
+            if(trigger != target) trigger.hide();
+            var old_value = target.html().replace(/^\s+/,'').replace(/\s+$/,'');
             var input = $('<input>').val(old_value).attr('id','editable_'+(new Date()*1)).addClass('editable');
             var finish = function(){
                 var res = input.val().replace(/^\s+/,'').replace(/\s+$/,'');
-                that.html(res);
-                that.bind(event, edit_start);
-                callback({value : res, target : that, oldValue : old_value});
-            }
+                target.html(res);
+                callback({value : res, target : target, old_value : old_value});
+                trigger.bind(action, edit_start);
+                if(trigger != target) trigger.show();
+            };
 
             input.blur(finish);
             input.keydown(function(e){
                 if(e.keyCode == 13) finish();
             });
 
-            that.html(input);
+            target.html(input);
             input.focus();
         };
 
-        that.bind(event, edit_start);
+        trigger.bind(action, edit_start);
     };
 })(jQuery);
