@@ -21,6 +21,12 @@
           console.log(e.value);
         });
 
+        // click hold
+        $('.age .editable').editable('clickhold', function(e){
+          alert(e.value);
+          console.log(e.value);
+        });
+
         // validation
         $('.zip .editable').editable('click', function(e){
           if(e.value.match(/^\d{3}\-\d{4}$/)){
@@ -74,6 +80,13 @@
         <span>city :</span>
         <span class="editable">
           Fujisawa, Kanagawa
+        </span>
+      </div>
+      <h2>clickhold</h2>
+      <div class="age">
+        <span>age :</span>
+        <span class="editable">
+          38
         </span>
       </div>
       <h2>validation</h2>

@@ -15,8 +15,10 @@
         }
 
         var target = this;
-        var edit_start = function(){
-            trigger.unbind(action);
+        var edit = {};
+
+        edit.start = function(){
+            trigger.unbind(action == 'clickhold' ? 'mousedown' : action);
             if(trigger != target) trigger.hide();
             var old_value = target.text().replace(/^\s+/,'').replace(/\s+$/,'');
             var input = $('<input>').val(old_value).
@@ -27,7 +29,7 @@
                 var res = input.val().replace(/^\s+/,'').replace(/\s+$/,'');
                 target.text(res);
                 callback({value : res, target : target, old_value : old_value});
-                trigger.bind(action, edit_start);
+                edit.regist();
                 if(trigger != target) trigger.show();
             };
 
@@ -40,7 +42,24 @@
             input.focus();
         };
 
-        trigger.bind(action, edit_start);
+        edit.regist = function(){
+            if(action == 'clickhold'){
+                var tid = null;
+                trigger.bind('mousedown', function(e){
+                    tid = setTimeout(function(){
+                        edit.start();
+                    }, 500);
+                });
+                trigger.bind('mouseup mouseout', function(e){
+                    clearTimeout(tid);
+                });
+            }
+            else{
+                trigger.bind(action, edit.start);
+            }
+        };
+        edit.regist();
+
         return this;
     };
 })(jQuery);

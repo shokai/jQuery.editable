@@ -29,6 +29,13 @@ Double click
     });
 
 
+Click hold
+
+    $('span#edit').editable('clickhold', function(e){
+      alert(e.value);
+    });
+
+
 Edit with Button
 
     var option = {trigger : $('input.btn_edit'), action : 'click'};
