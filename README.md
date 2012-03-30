@@ -6,6 +6,12 @@ DEMO
 ----
 [http://dev.shokai.org/js/jquery-editable/](http://dev.shokai.org/js/jquery-editable/)
 
+
+DOWNLOAD
+--------
+[jquery.editable.js](https://raw.github.com/shokai/jQuery.editable/master/jquery.editable.js)
+
+
 SYNOPSIS
 --------
 
