@@ -22,7 +22,9 @@
         });
 
         // click hold
-        $('.age .editable').editable('clickhold', function(e){
+        $('.website .editable').editable('clickhold', function(e){
+          var a_tag = $('<a>').attr('href', e.value).text(e.value);
+          $('.website .editable').html(a_tag);
           alert(e.value);
           console.log(e.value);
         });
@@ -39,11 +41,11 @@
         });
 
         // edit button
-        var option = {trigger : $('.website .btn_edit'), action : 'click'};
-        $('.website .editable').editable(option, function(e){
-          if(!e.value.match(/^https?:\/\/.+/)){
-            $('.website .editable').html(e.old_value);
-            alert(e.value + ' is not valid URL');
+        var option = {trigger : $('.age .btn_edit'), action : 'click'};
+        $('.age .editable').editable(option, function(e){
+          if(!e.value.match(/^\d+$/)){
+            $('.age .editable').html(e.old_value);
+            alert(e.value + ' is not valid age');
           }
           else{
             alert('save : '+e.value);
@@ -83,11 +85,9 @@
         </span>
       </div>
       <h2>clickhold</h2>
-      <div class="age">
-        <span>age :</span>
-        <span class="editable">
-          38
-        </span>
+      <div class="website">
+        <span>website :</span>
+        <span class="editable"><a href="http://shokai.org">http://shokai.org</a></span>
       </div>
       <h2>validation</h2>
       <div class="zip">
@@ -97,9 +97,11 @@
         </span>
       </div>
       <h2>edit button</h2>
-      <div class="website">
-        <span>website :</span>
-        <span class="editable">http://shokai.org</span>
+      <div class="age">
+        <span>age :</span>
+        <span class="editable">
+          38
+        </span>
         <input type="button" value="edit" class="btn_edit"></input>
       </div>
     </div>
