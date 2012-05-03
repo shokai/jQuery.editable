@@ -17,7 +17,7 @@
         var target = this;
         var edit = {};
 
-        edit.start = function(){
+        edit.start = function(e){
             trigger.unbind(action == 'clickhold' ? 'mousedown' : action);
             if(trigger != target) trigger.hide();
             var old_value = target.text().replace(/^\s+/,'').replace(/\s+$/,'');
@@ -47,7 +47,7 @@
                 var tid = null;
                 trigger.bind('mousedown', function(e){
                     tid = setTimeout(function(){
-                        edit.start();
+                        edit.start(e);
                     }, 500);
                 });
                 trigger.bind('mouseup mouseout', function(e){
