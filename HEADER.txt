@@ -1,0 +1,4 @@
+// jQuery.editable.js v1.0.0
+// http://shokai.github.com/jQuery.editable
+// (c) 2012 Sho Hashimoto <hashimoto@shokai.org>
+// The MIT License

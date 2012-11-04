@@ -59,6 +59,18 @@ $("span#zip").editable("click", function(e){
 });
 ````
 
+
+Build
+-----
+
+edit "HEADER.txt"
+
+    % npm install -g uglify-js
+    % rake build
+
+=> jquery.editable.min.js
+
+
 LICENSE
 =======
 (The MIT License)
