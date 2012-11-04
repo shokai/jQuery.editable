@@ -32,7 +32,7 @@ $('span#edit').editable('click', function(e){
 
 Double click
 
-````html
+````javascript
 $('span#edit').editable('dblclick', function(e){
   alert(e.old_value + ' : ' + e.value);
 });
