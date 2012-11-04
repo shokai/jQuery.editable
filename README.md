@@ -53,7 +53,7 @@ Validate
 ````javascript
 $("span#zip").editable("click", function(e){
   if( !e.value.match(/^\d{3}\-\d{4}$/) ){
-    $("span#zip").html(e.old_value);
+    e.target.html(e.old_value);
     alert(e.value + " is not valid zip-code");
   }
 });
