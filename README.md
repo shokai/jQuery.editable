@@ -68,7 +68,7 @@ edit "HEADER.txt"
     % npm install -g uglify-js
     % rake build
 
-=> jquery.editable.min.js
+=> jquery.editable.js
 
 
 LICENSE
