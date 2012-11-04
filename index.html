@@ -3,11 +3,77 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>jQuery.editable by shokai</title>
+    <title>jQuery.editable</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/jquery-1.8.2.min.js"></script>
+    <script src="javascripts/jquery.editable.js"></script>
     <script src="javascripts/respond.js"></script>
+    <style type="text/css">
+      span.editable {
+        background-color : #A17;
+        padding : 3px;
+      }
+      input.editable {
+      }
+      div {
+        margin : 15px;
+      }
+      input[type="button"] {
+        padding : 1px 5px 1px 5px;
+        background-color : #DDD;
+        border : 1px solid #CCC;
+        border-radius : 8px;
+        margin : 5px;
+      }
+    </style>
+    <script type="text/javascript">
+      $(function(){
+        // mouse over
+        $("h1").editable("mouseover");
+
+        // single click
+        $(".name .editable").editable("click", function(e){
+          alert(e.value);
+        });
+
+        // double click
+        $(".city .editable").editable("dblclick", function(e){
+          alert(e.target.selector + " : " + e.value);
+        });
+
+        // click hold
+        $(".website .editable").editable("clickhold", function(e){
+          var a_tag = $("<a>").attr("href", e.value).text(e.value);
+          $(".website .editable").html(a_tag);
+          alert(e.value);
+        });
+
+        // edit button
+        var option = {trigger : $(".age .btn_edit"), action : "click"};
+        $(".age .editable").editable(option, function(e){
+          if(!e.value.match(/^\d+$/)){
+            $(".age .editable").html(e.old_value);
+            alert(e.value + " is not valid age");
+          }
+          else{
+            alert(e.value);
+          }
+        });
+
+        // validation
+        $(".zip .editable").editable("click", function(e){
+          if(e.value.match(/^\d{3}\-\d{4}$/)){
+            alert(e.target.selector + ":" + e.value);
+          }
+          else{
+            $(".zip .editable").html(e.old_value);
+            alert(e.value + " is not valid zip-code");
+          }
+        });
+
+      });
+    </script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -38,50 +104,90 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
         </div>
 
-        <h1>jQuery.editable plugin</h1>
-
-<p>Edit in place plugin for jQuery</p>
-
 <h2>DOWNLOAD</h2>
 
 <p><a href="https://raw.github.com/shokai/jQuery.editable/master/jquery.editable.js">jquery.editable.js</a></p>
 
-<h2>SYNOPSIS</h2>
+<h2>Load jquery.editable.js</h2>
 
-<h3>Load jquery.editable.js</h3>
-
-<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'jquery.js'</span> <span class="na">type=</span><span class="s">'text/javascript'</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'jquery.editable.js'</span> <span class="na">type=</span><span class="s">'text/javascript'</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery.js"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery.editable.js"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </pre></div>
 
-<h3>Make editable</h3>
+<h2>Click</h2>
 
-<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'span#edit'</span><span class="p">).</span><span class="nx">editable</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+<p class="name">
+  <span>name :</span>
+  <span class="editable">
+    shokai
+  </span>
+</p>
+
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">"span#edit"</span><span class="p">).</span><span class="nx">editable</span><span class="p">(</span><span class="s1">"click"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
   <span class="nx">alert</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
 
-<h3>Double click</h3>
+<h2>Double click</h2>
 
-<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'span#edit'</span><span class="p">).</span><span class="nx">editable</span><span class="p">(</span><span class="s1">'dblclick'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">old_value</span> <span class="o">+</span> <span class="s1">' : '</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<p class="city">
+  <span>city :</span>
+  <span class="editable">
+    Fujisawa, Kanagawa
+  </span>
+</p>
+
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">"span#edit"</span><span class="p">).</span><span class="nx">editable</span><span class="p">(</span><span class="s1">"dblclick"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">old_value</span> <span class="o">+</span> <span class="s1">" : "</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
 
-<h3>Click hold</h3>
+<h2>Click hold</h2>
 
-<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'span#edit'</span><span class="p">).</span><span class="nx">editable</span><span class="p">(</span><span class="s1">'clickhold'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+<p class="website">
+  <span>website :</span>
+  <span class="editable"><a href="http://shokai.org">http://shokai.org</a></span>
+</p>
+
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">"span#edit"</span><span class="p">).</span><span class="nx">editable</span><span class="p">(</span><span class="s1">"clickhold"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
   <span class="nx">alert</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
 
-<h3>Edit with Button</h3>
+<h2>Edit with Button</h2>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">option</span> <span class="o">=</span> <span class="p">{</span><span class="nx">trigger</span> <span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'input.btn_edit'</span><span class="p">),</span> <span class="nx">action</span> <span class="o">:</span> <span class="s1">'click'</span><span class="p">};</span>
-<span class="nx">$</span><span class="p">(</span><span class="s1">'span#edit'</span><span class="p">).</span><span class="nx">editable</span><span class="p">(</span><span class="nx">option</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+<p class="age">
+  <span>age :</span>
+  <span class="editable">
+    48
+  </span>
+  <input type="button" value="edit" class="btn_edit"></input>
+</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">option</span> <span class="o">=</span> <span class="p">{</span><span class="nx">trigger</span> <span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">"input.btn_edit"</span><span class="p">),</span> <span class="nx">action</span> <span class="o">:</span> <span class="s1">"click"</span><span class="p">};</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">"span#edit"</span><span class="p">).</span><span class="nx">editable</span><span class="p">(</span><span class="nx">option</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
   <span class="nx">alert</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
+
+<h2>Validation</h2>
+
+<p class="zip">
+  <span>zip-code :</span>
+  <span class="editable">
+    252-0816
+  </span>
+</p>
+
+<div class="highlight"><pre><span class="p">$(</span><span class="s">&quot;span#zip&quot;</span><span class="p">).</span><span class="n">editable</span><span class="p">(</span><span class="s">&quot;click&quot;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="n">e</span><span class="p">){</span>
+  <span class="k">if</span><span class="p">(</span> <span class="p">!</span><span class="n">e</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s">/^\d{3}\-\d{4}$/</span><span class="p">)</span> <span class="p">){</span>
+    <span class="p">$(</span><span class="s">&quot;span#zip&quot;</span><span class="p">).</span><span class="n">html</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">old_value</span><span class="p">);</span>
+    <span class="n">alert</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">value</span> <span class="p">+</span> <span class="s">&quot; is not valid zip-code&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+
       </section>
 
     </div>
