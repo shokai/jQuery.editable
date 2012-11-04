@@ -49,6 +49,16 @@ $('span#edit').editable(option, function(e){
 });
 ````
 
+Validate
+````javascript
+$("span#zip").editable("click", function(e){
+  if( !e.value.match(/^\d{3}\-\d{4}$/) ){
+    $("span#zip").html(e.old_value);
+    alert(e.value + " is not valid zip-code");
+  }
+});
+````
+
 LICENSE
 =======
 (The MIT License)
