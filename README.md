@@ -2,14 +2,7 @@ jQuery.editable plugin
 ======================
 Edit in place plugin for jQuery
 
-DEMO
-----
-[http://dev.shokai.org/js/jquery-editable/](http://dev.shokai.org/js/jquery-editable/)
-
-
-DOWNLOAD
---------
-[jquery.editable.js](https://raw.github.com/shokai/jQuery.editable/master/jquery.editable.js)
+* http://shokai.github.com/jQuery.editable/
 
 
 SYNOPSIS
