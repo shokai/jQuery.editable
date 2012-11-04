@@ -11,14 +11,14 @@ SYNOPSIS
 Load jquery.editable.js
 
 ````html
-<script src='jquery.js' type='text/javascript'></script>
-<script src='jquery.editable.js' type='text/javascript'></script>
+<script src="jquery.js" type="text/javascript"></script>
+<script src="jquery.editable.js" type="text/javascript"></script>
 ````
 
 Make editable
 
 ````javascript
-$('span#edit').editable('click', function(e){
+$("span#edit").editable("click", function(e){
   alert(e.value);
 });
 ````
@@ -26,15 +26,15 @@ $('span#edit').editable('click', function(e){
 Double click
 
 ````javascript
-$('span#edit').editable('dblclick', function(e){
-  alert(e.old_value + ' : ' + e.value);
+$("span#edit").editable("dblclick", function(e){
+  alert(e.old_value + " : " + e.value);
 });
 ````
 
 Click hold
 
 ````javascript
-$('span#edit').editable('clickhold', function(e){
+$("span#edit").editable("clickhold", function(e){
   alert(e.value);
 });
 ````
@@ -43,8 +43,8 @@ $('span#edit').editable('clickhold', function(e){
 Edit with Button
 
 ````javascript
-var option = {trigger : $('input.btn_edit'), action : 'click'};
-$('span#edit').editable(option, function(e){
+var option = {trigger : $("input.btn_edit"), action : "click"};
+$("span#edit").editable(option, function(e){
   alert(e.value);
 });
 ````
