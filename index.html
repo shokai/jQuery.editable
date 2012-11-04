@@ -30,7 +30,7 @@
     <script type="text/javascript">
       $(function(){
         // mouse over
-        $("h1").editable("mouseover");
+        $("#title h1").editable("mouseover");
 
         // single click
         $(".name .editable").editable("click", function(e){
@@ -98,7 +98,7 @@
       <section>
         <div id="title">
           <h1>jQuery.editable</h1>
-          <p>edit in place plugin for jQuery  </p>
+          <p>edit in place plugin for jQuery</p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/shokai">shokai</a></span>
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
@@ -112,6 +112,12 @@
 
 <div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery.js"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery.editable.js"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+
+<h2>Mouse over</h2>
+
+<div class="highlight"><pre><span class="p">$(</span><span class="s">&quot;#title h1&quot;</span><span class="p">).</span><span class="n">editable</span><span class="p">(</span><span class="s">&quot;mouseover&quot;</span><span class="p">,</span> <span class="n">callback</span><span class="p">);</span>
 </pre></div>
 
 <h2>Click</h2>
