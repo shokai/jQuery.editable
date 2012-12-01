@@ -1,4 +1,4 @@
-task 'build' do
+task :build do
   src = File.expand_path 'src/jquery.editable.js', File.dirname(__FILE__)
   dest = File.expand_path 'jquery.editable.js', File.dirname(__FILE__)
   header = File.expand_path 'HEADER.txt', File.dirname(__FILE__)
@@ -11,3 +11,5 @@ task 'build' do
   end
   puts " => #{dest}"
 end
+
+task :default => :build
