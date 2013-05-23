@@ -2,7 +2,7 @@ jQuery.editable plugin
 ======================
 Edit in place plugin for jQuery
 
-* http://shokai.github.com/jQuery.editable/
+* http://shokai.github.io/jQuery.editable/
 
 
 SYNOPSIS
@@ -11,7 +11,7 @@ SYNOPSIS
 Load jquery.editable.js
 
 ````html
-<script src="jquery.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="jquery.editable.js" type="text/javascript"></script>
 ````
 
