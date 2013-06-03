@@ -1,7 +1,7 @@
-// jquery.editable.js
-// (c) 2012 Sho Hashimoto <hashimoto@shokai.org>
-// https://github.com/shokai/jQuery.editable
-
+// jQuery.editable.js v1.0.1
+// http://shokai.github.com/jQuery.editable
+// (c) 2012-2013 Sho Hashimoto <hashimoto@shokai.org>
+// The MIT License
 (function($){
     $.fn.editable = function(event, callback){
         if(typeof callback != 'function') callback = function(arg){};
