@@ -25,7 +25,7 @@
                 var res = input.val().replace(/^\s+/,'').replace(/\s+$/,'');
                 target.text(res);
                 callback({value : res, target : target, old_value : old_value});
-                edit.regist();
+                edit.register();
                 if(trigger != target) trigger.show();
             };
 
@@ -38,7 +38,7 @@
             input.focus();
         };
 
-        edit.regist = function(){
+        edit.register = function(){
             if(action == 'clickhold'){
                 var tid = null;
                 trigger.bind('mousedown', function(e){
@@ -54,7 +54,7 @@
                 trigger.bind(action, edit.start);
             }
         };
-        edit.regist();
+        edit.register();
 
         return this;
     };
