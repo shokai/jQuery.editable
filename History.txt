@@ -1,3 +1,7 @@
+=== 1.1.0  2013-08-23
+
+* support textarea tag
+
 === 1.0.1  2013-05-23
 
 * provide un-compressed js

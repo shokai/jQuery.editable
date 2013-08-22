@@ -1,65 +1,90 @@
-// jQuery.editable.js v1.0.1
-// http://shokai.github.com/jQuery.editable
+// jQuery.editable.js v1.1.0
+// http://shokai.github.io/jQuery.editable
 // (c) 2012-2013 Sho Hashimoto <hashimoto@shokai.org>
 // The MIT License
 (function($){
-    $.fn.editable = function(event, callback){
-        if(typeof callback != 'function') callback = function(arg){};
-        if(typeof event == "string"){
-            var trigger = this;
-            var action = event;
-        }
-        else{
-            var trigger = event.trigger;
-            var action = event.action;
-        }
+  var escape_html = function(str){
+    return str.replace(/</gm, '&lt;').replace(/>/gm, '&gt;');
+  };
+  var unescape_html = function(str){
+    return str.replace(/&lt;/gm, '<').replace(/&gt;/gm, '>');
+  };
 
-        var target = this;
-        var edit = {};
+  $.fn.editable = function(event, callback){
+    if(typeof callback !== 'function') callback = function(){};
+    if(typeof event === 'string'){
+      var trigger = this;
+      var action = event;
+      var type = 'input';
+    }
+    else if(typeof event === 'object'){
+      var trigger = event.trigger || this;
+      if(typeof trigger === 'string') trigger = $(trigger);
+      var action = event.action || 'click';
+      var type = event.type || 'input';
+    }
+    else{
+      throw('Argument Error - jQuery.editable("click", function(){ ~~ })');
+    }
 
-        edit.start = function(e){
-            trigger.unbind(action == 'clickhold' ? 'mousedown' : action);
-            if(trigger != target) trigger.hide();
-            var old_value = target.text().replace(/^\s+/,'').replace(/\s+$/,'');
-            var input = $('<input>').val(old_value).
-                width(target.width()+target.height()).css('font-size','100%').
-                css('margin',0).attr('id','editable_'+(new Date()*1)).
-                addClass('editable');
-            var finish = function(){
-                var res = input.val().replace(/^\s+/,'').replace(/\s+$/,'');
-                target.text(res);
-                callback({value : res, target : target, old_value : old_value});
-                edit.regist();
-                if(trigger != target) trigger.show();
-            };
+    var target = this;
+    var edit = {};
 
-            input.blur(finish);
-            input.keydown(function(e){
-                if(e.keyCode == 13) finish();
-            });
+    edit.start = function(e){
+      trigger.unbind(action === 'clickhold' ? 'mousedown' : action);
+      if(trigger !== target) trigger.hide();
+      var old_value = (
+        type === 'textarea' ?
+          target.html().replace(/<br( \/)?>/gm, '\n').replace(/&gt;/gm, '>').replace(/&lt;/gm, '<') :
+          target.text()
+      ).replace(/^\s+/,'').replace(/\s+$/,'');
 
-            target.html(input);
-            input.focus();
-        };
+      var input = type === 'textarea' ? $('<textarea>') : $('<input>');
+      input.val(old_value).
+        css('width', type === 'textarea' ? '100%' : target.width()+target.height() ).
+        css('font-size','100%').
+        css('margin',0).attr('id','editable_'+(new Date()*1)).
+        addClass('editable');
+      if(type === 'textarea') input.css('height', target.height());
 
-        edit.regist = function(){
-            if(action == 'clickhold'){
-                var tid = null;
-                trigger.bind('mousedown', function(e){
-                    tid = setTimeout(function(){
-                        edit.start(e);
-                    }, 500);
-                });
-                trigger.bind('mouseup mouseout', function(e){
-                    clearTimeout(tid);
-                });
-            }
-            else{
-                trigger.bind(action, edit.start);
-            }
-        };
-        edit.regist();
+      var finish = function(){
+        var res = escape_html(input.val().replace(/^\s+/,'').replace(/\s+$/,''));
+        if(type === 'textarea') res = res.replace(/[\r\n]/gm, '<br />');
+        target.html(res);
+        callback({value : res, target : target, old_value : old_value});
+        edit.register();
+        if(trigger !== target) trigger.show();
+      };
 
-        return this;
+      input.blur(finish);
+      if(type === 'input'){
+        input.keydown(function(e){
+          if(e.keyCode === 13) finish();
+        });
+      }
+
+      target.html(input);
+      input.focus();
     };
+
+    edit.register = function(){
+      if(action === 'clickhold'){
+        var tid = null;
+        trigger.bind('mousedown', function(e){
+          tid = setTimeout(function(){
+            edit.start(e);
+          }, 500);
+        });
+        trigger.bind('mouseup mouseout', function(e){
+          clearTimeout(tid);
+        });
+      }
+      else{
+        trigger.bind(action, edit.start);
+      }
+    };
+    edit.register();
+
+    return this;
+  };
 })(jQuery);
