@@ -1,22 +1,22 @@
 (function($){
   $.fn.editable = function(event, callback){
 
-    if(typeof callback != 'function') callback = function(arg){};
-    if(typeof event == "string"){
+    if(typeof callback !== 'function') callback = function(arg){};
+    if(typeof event === 'string'){
       var trigger = this;
       var action = event;
     }
     else{
-      var trigger = event.trigger;
-      var action = event.action;
+      var trigger = event.trigger || this;
+      var action = event.action || 'click';
     }
 
     var target = this;
     var edit = {};
 
     edit.start = function(e){
-      trigger.unbind(action == 'clickhold' ? 'mousedown' : action);
-      if(trigger != target) trigger.hide();
+      trigger.unbind(action === 'clickhold' ? 'mousedown' : action);
+      if(trigger !== target) trigger.hide();
       var old_value = target.text().replace(/^\s+/,'').replace(/\s+$/,'');
       var input = $('<input>').val(old_value).
         width(target.width()+target.height()).css('font-size','100%').
@@ -27,12 +27,12 @@
         target.text(res);
         callback({value : res, target : target, old_value : old_value});
         edit.register();
-        if(trigger != target) trigger.show();
+        if(trigger !== target) trigger.show();
       };
 
       input.blur(finish);
       input.keydown(function(e){
-        if(e.keyCode == 13) finish();
+        if(e.keyCode === 13) finish();
       });
 
       target.html(input);
@@ -40,7 +40,7 @@
     };
 
     edit.register = function(){
-      if(action == 'clickhold'){
+      if(action === 'clickhold'){
         var tid = null;
         trigger.bind('mousedown', function(e){
           tid = setTimeout(function(){
