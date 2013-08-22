@@ -51,7 +51,7 @@ $("span#edit").editable("clickhold", function(e){
 Edit with Button
 
 ````javascript
-var option = {trigger : $("input.btn_edit"), action : "click"};
+var option = {trigger: $("input.btn_edit"), action: "click"};
 $("span#edit").editable(option, function(e){
   alert(e.value);
 });
@@ -66,6 +66,15 @@ $("span#zip").editable("click", function(e){
   }
 });
 ````
+
+Textarea
+```javascript
+// textarea
+var option = {type: "textarea", action: "click"};
+$("div#sandbox").editable(option, function(e){
+  console.log(e.value);
+});
+```
 
 
 Build

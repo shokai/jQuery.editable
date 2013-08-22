@@ -43,4 +43,9 @@ $(function(){
     }
   });
 
+  // textarea
+  $('.textarea .editable').editable({type: 'textarea', action: 'click'}, function(e){
+    console.log(e.value);
+  });
+
 });
