@@ -67,9 +67,8 @@ $("span#zip").editable("click", function(e){
 });
 ````
 
-Textarea
+TextArea Tag
 ```javascript
-// textarea
 var option = {type: "textarea", action: "click"};
 $("div#sandbox").editable(option, function(e){
   console.log(e.value);
