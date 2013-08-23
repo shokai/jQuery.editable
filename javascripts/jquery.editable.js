@@ -1,4 +1,4 @@
-// jQuery.editable.js v1.1.0
+// jQuery.editable.js v1.1.1
 // http://shokai.github.io/jQuery.editable
 // (c) 2012-2013 Sho Hashimoto <hashimoto@shokai.org>
 // The MIT License
@@ -48,10 +48,11 @@
       if(type === 'textarea') input.css('height', target.height());
 
       var finish = function(){
-        var res = escape_html(input.val().replace(/^\s+/,'').replace(/\s+$/,''));
-        if(type === 'textarea') res = res.replace(/[\r\n]/gm, '<br />');
-        target.html(res);
-        callback({value : res, target : target, old_value : old_value});
+        var result = input.val().replace(/^\s+/,'').replace(/\s+$/,'');
+        var html = escape_html(result);
+        if(type === 'textarea') html = html.replace(/[\r\n]/gm, '<br />');
+        target.html(html);
+        callback({value : result, target : target, old_value : old_value});
         edit.register();
         if(trigger !== target) trigger.show();
       };
