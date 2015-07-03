@@ -13,6 +13,11 @@ Download
 - [jQuery.editable.js](https://raw.github.com/shokai/jQuery.editable/master/jquery.editable.js)
 - [jQuery.editable.min.js](https://raw.github.com/shokai/jQuery.editable/master/jquery.editable.min.js)
 
+Via bower:
+```bash
+bower install jQuery.editable
+```
+
 SYNOPSIS
 --------
 
