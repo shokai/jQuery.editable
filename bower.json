@@ -1,0 +1,24 @@
+{
+  "name": "jQuery.editable",
+  "version": "1.1.1",
+  "homepage": "https://github.com/shokai/jQuery.editable",
+  "authors": [
+    "shokai"
+  ],
+  "dependencies": {
+    "jquery": ">1.9.0"
+  },
+  "description": "Edit in place plugin for jQuery",
+  "main": "jquery.editable.js",
+  "keywords": [
+    "jquery",
+    "inline",
+    "editing"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "test",
+    "tests"
+  ]
+}
