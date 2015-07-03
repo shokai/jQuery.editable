@@ -1,3 +1,8 @@
+=== 1.1.2  2015-07-04
+
+* support bower install
+  * thank you for contributing @anilmaurya
+
 === 1.1.1  2013-08-24
 
 * bugfix html escape in textarea
