@@ -29,10 +29,11 @@
     edit.start = function(e){
       trigger.unbind(action === 'clickhold' ? 'mousedown' : action);
       if(trigger !== target) trigger.hide();
+      var text = target.attr("editable-src") ? target.attr("editable-src") : target.text();
       var old_value = (
         type === 'textarea' ?
-          target.text().replace(/<br( \/)?>/gm, '\n').replace(/&gt;/gm, '>').replace(/&lt;/gm, '<') :
-          target.text()
+          text.replace(/<br( \/)?>/gm, '\n').replace(/&gt;/gm, '>').replace(/&lt;/gm, '<') :
+          text
       ).replace(/^\s+/,'').replace(/\s+$/,'');
 
       var input = type === 'textarea' ? $('<textarea>') : $('<input>');
